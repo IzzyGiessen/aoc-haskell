@@ -1,4 +1,5 @@
 import System.IO
+import Data.List
 import Control.Monad
 
 split :: [String] -> [[String]]
@@ -12,7 +13,10 @@ getMax :: [String] -> Int
 getMax [] = 0
 getMax ls =
   let caps = map (map read) $ split ls :: [[Int]]
-  in maximum (map (foldl (+) 0) caps)
+  in case sortOn (negate) $ map (foldl (+) 0) caps of
+    x:y:z:xs -> x + y + z
+    xs -> sum xs
+  --in maximum (map (foldl (+) 0) caps)
 
 main = do
   file <- openFile "input/input" ReadMode
