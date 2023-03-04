@@ -5,22 +5,19 @@ import Control.Monad
 split :: [String] -> [[String]]
 split [] = []
 split xs =
-  let part = takeWhile (/= []) xs
-      (_, rest) = splitAt (length part + 1) xs
-  in [part] ++ split rest
+  case span (/= []) xs of
+    (left, [])    -> [left]
+    (left, right) -> [left] ++ (split $ tail right)
 
-getMax :: [String] -> Int
-getMax [] = 0
-getMax ls =
-  let caps = map (map read) $ split ls :: [[Int]]
-  in case sortOn (negate) $ map (foldl (+) 0) caps of
-    x:y:z:xs -> x + y + z
-    xs -> sum xs
-  --in maximum (map (foldl (+) 0) caps)
+getTopThree :: [Int] -> [String] -> [Int]
+getTopThree acc x =
+  let cap = sum $ map read x in
+    if cap > acc!!2 then sortOn negate [acc!!0, acc!!1, cap]
+    else acc
 
 main = do
   file <- openFile "input/input" ReadMode
   contents <- hGetContents file
-  let ans = getMax $ lines contents
-  print ans
+  let top = foldl getTopThree [0, 0, 0] (split $ lines contents)
+  print $ sum top
   hClose file
