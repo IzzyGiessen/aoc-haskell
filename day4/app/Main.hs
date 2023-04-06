@@ -12,9 +12,8 @@ data Range = Range
 
 contains :: Range -> Range -> Bool
 contains r1 r2
-  | (start r1 >= start r2) && (end r1 <= end r2)    = True
-  | (start r1 <= start r2) && (end r1 >= end r2)    = True
-  | otherwise                                   = False
+  | start r1 <= start r2 = end r1 >= start r2
+  | otherwise            = end r2 >= start r1
 
 stringToRange :: String -> Range
 stringToRange s = let left:right:[] = splitOn "-" s in
