@@ -5,17 +5,17 @@ import Control.Monad
 play :: String -> Int
 play x = case x of
   ('A':_:r:[]) -> case r of
-    'X' -> 4
-    'Y' -> 8
-    'Z' -> 3
+    'X' -> 3
+    'Y' -> 4
+    'Z' -> 8
   ('B':_:r:[]) -> case r of
     'X' -> 1
     'Y' -> 5
     'Z' -> 9
   ('C':_:r:[]) -> case r of
-    'X' -> 7
-    'Y' -> 2
-    'Z' -> 6
+    'X' -> 2
+    'Y' -> 6
+    'Z' -> 7
   _            -> error x
 
 main = do
