@@ -20,6 +20,16 @@
   (major1) == 4 && (major2) <  15 || \
   (major1) == 4 && (major2) == 15 && (minor) <= 1)
 #endif /* MIN_VERSION_base */
+/* package extra-1.7.13 */
+#ifndef VERSION_extra
+#define VERSION_extra "1.7.13"
+#endif /* VERSION_extra */
+#ifndef MIN_VERSION_extra
+#define MIN_VERSION_extra(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  7 || \
+  (major1) == 1 && (major2) == 7 && (minor) <= 13)
+#endif /* MIN_VERSION_extra */
 /* package split-0.2.3.5 */
 #ifndef VERSION_split
 #define VERSION_split "0.2.3.5"
