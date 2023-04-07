@@ -24,7 +24,3 @@ main = do
   let ans = foldl (\acc -> (+) acc . play) 0 $ lines contents
   print ans
   hClose file
-
-
---Int -> Int -> Int
---Int -> String -> Int
